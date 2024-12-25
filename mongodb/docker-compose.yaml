@@ -1,0 +1,17 @@
+services:
+  mongo:
+    build: ./.docker/mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mongosh --username admin --password admin --authenticationDatabase admin --eval 'try { rs.status() } catch (err) { rs.initiate() }' || exit 1",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5

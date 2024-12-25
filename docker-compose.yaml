@@ -1,0 +1,4 @@
+include:
+  - ./go-lang/docker-compose.yaml
+  - ./nestjs-api/docker-compose.yaml
+  - ./next-front/docker-compose.yaml
